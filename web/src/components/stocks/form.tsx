@@ -80,7 +80,7 @@ export default function Form({
                 </div>
               }
             >
-              <div className="grid grid-cols-2 gap-4 my-4">
+              <div className="grid grid-cols-2 gap-4">
                 <Autocomplete
                   label="Walor"
                   placeholder="PKNORLEN"

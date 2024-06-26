@@ -79,7 +79,7 @@ export default function AddForm({
     <div className="flex flex-col xl:grid grid-cols-2 gap-4 sm:gap-8">
       <form onSubmit={addRecord}>
         <Block title="Dane">
-          <Tabs radius="lg" classNames={{ panel: "p-0" }}>
+          <Tabs radius="lg" fullWidth classNames={{ panel: "p-0" }}>
             <Tab
               key="manual"
               title={
@@ -154,7 +154,7 @@ export default function AddForm({
                     }))
                   }
                 />
-                <Textarea
+                {/* <Textarea
                   className="col-span-2"
                   classNames={{ inputWrapper: "!bg-light" }}
                   name="description"
@@ -167,7 +167,7 @@ export default function AddForm({
                       description: e.target.value,
                     }))
                   }
-                />
+                /> */}
               </div>
               <div className="flex justify-end mt-8">
                 <Button
@@ -185,7 +185,9 @@ export default function AddForm({
               title={
                 <div className="flex items-center gap-2">
                   <FileSpreadsheetIcon size={16} opacity={0.8} />
-                  <span>Import CSV</span>
+                  <span>
+                    <span className="hidden sm:inline">Import </span>CSV
+                  </span>
                 </div>
               }
             >
@@ -200,7 +202,8 @@ export default function AddForm({
               title={
                 <div className="flex items-center gap-2">
                   <ScanTextIcon size={16} opacity={0.8} />
-                  <span>Skan dokumentu</span>
+                  <span className="sm:block hidden">Skan zdjęcia</span>
+                  <span className="sm:hidden">Zdjęcie</span>
                 </div>
               }
             >

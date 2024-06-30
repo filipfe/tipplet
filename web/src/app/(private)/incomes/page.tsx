@@ -3,7 +3,6 @@ import Stat from "@/components/dashboard/stats/ref";
 import IncomeTable from "@/components/operations/table";
 import Loader from "@/components/stocks/loader";
 import LineChartLoader from "@/components/ui/charts/line-loader";
-import { getOwnRows } from "@/lib/general/actions";
 import { getOperationsStats } from "@/lib/operations/actions";
 import { getDefaultCurrency } from "@/lib/settings/actions";
 import { createClient } from "@/utils/supabase/server";

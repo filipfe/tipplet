@@ -11,32 +11,24 @@ import numberFormat from "@/utils/formatters/currency";
 import { TimelineContext } from "@/app/(private)/goals/providers";
 
 export default function GoalRef(goal: Goal) {
-  const {
-    id,
-    title,
-    price,
-    saved: defaultSaved,
-    currency,
-    deadline,
-    is_priority,
-  } = goal;
+  const { id, title, price, currency, deadline, is_priority } = goal;
   const formRef = useRef<HTMLFormElement>(null);
   const [isPending, startTransition] = useTransition();
-  const [saved, setSaved] = useState(defaultSaved.toString());
+  const [saved, setSaved] = useState("0");
   const [isSavedEditable, setIsSavedEditable] = useState(false);
   const isCompleted = parseFloat(saved) >= price;
   const { activeRecord, setActiveRecord } = useContext(TimelineContext);
 
-  function handleAdd() {
-    if (isPending || saved === defaultSaved.toString()) return;
-    const valid = (prev: string) =>
-      formatMax(parseFloat(prev || defaultSaved.toString() || "0"), price);
-    setSaved(valid);
-    startTransition(async () => {
-      await updateRow(id, "goal", { saved: valid(saved) });
-      setIsSavedEditable(false);
-    });
-  }
+  // function handleAdd() {
+  //   if (isPending || saved === defaultSaved.toString()) return;
+  //   const valid = (prev: string) =>
+  //     formatMax(parseFloat(prev || defaultSaved.toString() || "0"), price);
+  //   setSaved(valid);
+  //   startTransition(async () => {
+  //     await updateRow(id, "goal", { saved: valid(saved) });
+  //     setIsSavedEditable(false);
+  //   });
+  // }
 
   useOutsideObserver(formRef, () =>
     formRef.current?.dispatchEvent(

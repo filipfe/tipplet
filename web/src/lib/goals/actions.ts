@@ -24,18 +24,22 @@ export async function getGoals(): Promise<SupabaseResponse<Goal>> {
   };
 }
 
-// export async function getActiveGoals(): Promise<SupabaseResponse<ActiveGoal>> {
-//   const supabase = createClient();
-//   const { data: results, error } = await supabase.rpc("get_active_goals");
+export async function getGoalsPayments(): Promise<
+  SupabaseResponse<GoalPayment>
+> {
+  const supabase = createClient();
+  const { data: results, error } = await supabase
+    .from("goals_payments")
+    .select("goal_id, amount, date");
 
-//   if (error) {
-//     return {
-//       results: [],
-//       error: error.message,
-//     };
-//   }
+  if (error) {
+    return {
+      results: [],
+      error: error.message,
+    };
+  }
 
-//   return {
-//     results,
-//   };
-// }
+  return {
+    results,
+  };
+}

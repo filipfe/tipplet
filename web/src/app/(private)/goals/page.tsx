@@ -11,11 +11,17 @@ import { PlusIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import Table from "@/components/goals/table";
 import List from "@/components/goals/list";
+import { createClient } from "@/utils/supabase/server";
 
 export default async function Page() {
-  const { results: goals, error } = await getGoals();
+  const supabase = createClient();
+  const { data: goals, error } = await supabase
+    .from("goals")
+    .select("id, title, description, price, currency, deadline, is_priority")
+    .order("deadline")
+    .order("created_at");
 
-  if (goals.length === 0 && !error) redirect("/goals/add");
+  if (!error && (!goals || goals.length === 0)) redirect("/goals/add");
 
   // const priorityGoal = goals.find((goal) => goal.is_priority);
 
